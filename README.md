@@ -18,3 +18,29 @@ The installation should only take a few moments.
 ## Structure
 Within the charts directory, a parent chart named 'acp-standard-services' will create the [parent application](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/) which then installs the child applications, which are the individual services.
 
+The deployment of these services is controlled by template variables, allowing for fine-tuning of what services should be deployed.
+
+## Services
+Below are the services deployed by the parent `acp-standard-services` application.
+
+### Local Storage for Converged Storage
+[The local storage for converged service](https://github.com/RedHatEdge/patterns/blob/main/blocks/local-storage-for-converged-storage/README.md) is used as setup for the converged service. To deploy this service, define the following:
+
+```yaml
+localStorage:
+  # What nodes to look for local storage on - match to node names
+  nodes:
+    - node0
+    - node1
+    - node2
+  # Storage class to put the located storage into
+  storageClassName: local-disks
+  volumeMode: Block
+  # How to find storage devices
+  deviceInclusionSpec:
+    deviceTypes:
+      - disk
+    deviceMechanicalProperties:
+      - NonRotational
+```
+
