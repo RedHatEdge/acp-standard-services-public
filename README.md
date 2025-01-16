@@ -73,21 +73,11 @@ Define the following to setup this storage option:
 
 ```yaml
 localStorage:
+  forceWipeDrives: true
+  deviceSelectorPaths:
+    - /dev/sdb
   nodes:
-    # Create for each node that should have local storage
-    - name: node0
-      deviceSelector:
-        paths:
-          - /dev/sdb
-      forceWipeDrives: true
-    - name: node1
-      deviceSelector:
-        paths:
-          - /dev/sdb
-      forceWipeDrives: true
-    - name: node2
-      deviceSelector:
-        paths:
-          - /dev/sdb
-      forceWipeDrives: true
+    - node0
+    - node1
+    - node2
 ```
