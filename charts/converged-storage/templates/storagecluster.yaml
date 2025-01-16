@@ -12,7 +12,7 @@ spec:
   failureDomain: host
   failureDomainKey: kubernetes.io/hostname
   monDataDirHostPath: /var/lib/rook
-  resourceProfile: {{ .resourceProfile | | default "balanced" }}
+  resourceProfile: {{ .resourceProfile | default "balanced" }}
   storageDeviceSets:
     - config: {}
       count: {{ .totalNumDisks }}
