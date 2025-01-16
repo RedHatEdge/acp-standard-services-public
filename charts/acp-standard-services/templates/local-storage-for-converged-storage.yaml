@@ -3,7 +3,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ansible-automation-platform
+  name: local-storage-for-converged-storage
   namespace: {{ .Values.targetNamespace | default "openshift-gitops" }}
   labels:
     application: acp-standard-services
