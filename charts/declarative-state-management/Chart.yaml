@@ -1,0 +1,6 @@
+apiVersion: v2
+name: bootstrap-declarative-state-management
+description: A Helm chart to get the declarative state management service up and running
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
