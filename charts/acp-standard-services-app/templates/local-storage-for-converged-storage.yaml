@@ -17,4 +17,4 @@ spec:
     path: charts/acp-standard-services
     helm:
       values: |
-{{- toYaml .Values.localStorage | nindent 8 }}
+{{- toYaml .Values | nindent 8 }}
