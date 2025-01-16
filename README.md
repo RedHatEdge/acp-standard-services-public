@@ -62,5 +62,7 @@ convergedStorage:
   replicas: 3
   # For limited resource clusters, use lean. For more powerful clusters, use balanced or performance.
   resourceProfile: lean
+  # Match this to your cluster version
+  version: 4.17
 ```
 
