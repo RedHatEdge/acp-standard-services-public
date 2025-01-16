@@ -10,7 +10,7 @@ metadata:
 spec:
   storage:
     deviceClasses:
-{{- range .Values.lvmStorage.nodes }}
+{{- range .Values.localStorage.nodes }}
     - name: vg1
       fstype: xfs
       default: true
