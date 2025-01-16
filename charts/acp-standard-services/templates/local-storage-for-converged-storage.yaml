@@ -18,4 +18,8 @@ spec:
     path: chart/local-storage-for-converged-storage
     helm:
       values: |
-{{- toYaml .Values | nindent 8 }}
+{{ if .Values.localStorage }}
+        localStorage:
+{{- toYaml .Values.localStorage | nindent 10 }}
+{{ end }}
+{{ end }}
