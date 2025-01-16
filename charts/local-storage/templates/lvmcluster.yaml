@@ -10,27 +10,29 @@ metadata:
 spec:
   storage:
     deviceClasses:
-    - name: vg1
+{{- range .Values.localStorage.deviceClasses }}
+    - name: {{ .name }}
       fstype: xfs
-      default: true
+      default: {{ .default | default false }}
       nodeSelector:
         nodeSelectorTerms:
           - matchExpressions:
               - key: kubernetes.io/hostname
                 operator: In
                 values:
-{{- range .Values.localStorage.nodes }}
+{{- range .nodes }}
                   - {{ . }}
 {{- end }}
       deviceSelector:
         paths:
-{{- range .Values.localStorage.deviceSelectorPaths }}
+{{- range .deviceSelectorPaths }}
           - {{ . }}
 {{- end }}
-        forceWipeDevicesAndDestroyAllData: {{  .Values.localStorage.forceWipeDrives | default false }}
+        forceWipeDevicesAndDestroyAllData: {{  $.Values.localStorage.forceWipeDrives | default false }}
       thinPoolConfig:
         name: thin-pool-1
         sizePercent: 90 
         overprovisionRatio: 10
         chunkSize: 128Ki 
         chunkSizeCalculationPolicy: Static
+{{- end }}
