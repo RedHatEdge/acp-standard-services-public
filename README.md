@@ -44,3 +44,23 @@ localStorage:
       - NonRotational
 ```
 
+### Converged Storage
+Converged storage is provided by [Red Hat ODF](https://www.redhat.com/en/technologies/cloud-computing/openshift-data-foundation), and consumes the local storage provided by the local storage for converged storage service.
+
+To deploy, use the following vars:
+
+```yaml
+convergedStorage:
+  # Match to node names that should be storage nodes
+  nodes:
+    - node0
+    - node1
+    - node2
+  # Number of disks across all servers
+  totalNumDisks: 12
+  # Replica 3 is the default
+  replicas: 3
+  # For limited resource clusters, use lean. For more powerful clusters, use balanced or performance.
+  resourceProfile: lean
+```
+
