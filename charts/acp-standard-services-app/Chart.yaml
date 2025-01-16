@@ -1,0 +1,6 @@
+apiVersion: v2
+name: acp-standard-services-app
+description: App of apps to get acp-standard-services started
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
