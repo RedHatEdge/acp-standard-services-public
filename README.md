@@ -92,3 +92,9 @@ localStorage:
       deviceSelectorPaths:
         - /dev/sdb
 ```
+ 
+### Virtualization
+
+```yaml
+
+```
