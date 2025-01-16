@@ -1,0 +1,22 @@
+{{ if .Values.localStorage }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ansible-automation-platform
+  namespace: {{ .Values.targetNamespace | default "openshift-gitops" }}
+  labels:
+    application: acp-standard-services
+spec:
+  destination:
+    name: ''
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
+    targetRevision: {{ .Values.gitBranch | default "main" }}
+    path: chart/local-storage-for-converged-storage
+    helm:
+      values: |
+        localStorage:
+{{- toYaml .Values.localStorage | nindent 10 }}
