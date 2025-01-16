@@ -8,7 +8,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "3"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
-  storageClassName: {{ .Values.localStorage.storageClassName }}
-  volumeMode: {{ .Values.localStorage.volumeMode }}
+  storageClassName: {{ .Values.localStorageForConvergedStorage.storageClassName }}
+  volumeMode: {{ .Values.localStorageForConvergedStorage.volumeMode }}
   deviceInclusionSpec:
-{{- toYaml .Values.localStorage.deviceInclusionSpec | nindent 4 }}
+{{- toYaml .Values.localStorageForConvergedStorage.deviceInclusionSpec | nindent 4 }}
