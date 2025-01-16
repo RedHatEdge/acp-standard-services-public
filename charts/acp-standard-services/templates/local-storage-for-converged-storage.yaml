@@ -1,4 +1,4 @@
-{{ if .Values.localStorage }}
+{{ if .Values.localStorageForConvergedStorage }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -18,8 +18,6 @@ spec:
     path: charts/local-storage-for-converged-storage
     helm:
       values: |
-{{ if .Values.localStorage }}
-        localStorage:
-{{- toYaml .Values.localStorage | nindent 10 }}
-{{ end }}
+        localStorageForConvergedStorage:
+{{- toYaml .Values.localStorageForConvergedStorage | nindent 10 }}
 {{ end }}
