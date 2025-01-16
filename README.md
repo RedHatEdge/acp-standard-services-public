@@ -96,5 +96,8 @@ localStorage:
 ### Virtualization
 
 ```yaml
-
+virtualization:
+  nonRoot: true
+  commonBootImageImport: true
+  withHostPassthroughCPU: true
 ```
