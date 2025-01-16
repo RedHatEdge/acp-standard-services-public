@@ -27,7 +27,7 @@ Below are the services deployed by the parent `acp-standard-services` applicatio
 [The local storage for converged service](https://github.com/RedHatEdge/patterns/blob/main/blocks/local-storage-for-converged-storage/README.md) is used as setup for the converged service. To deploy this service, define the following:
 
 ```yaml
-localStorage:
+localStorageForConvergedStorage:
   # What nodes to look for local storage on - match to node names
   nodes:
     - node0
@@ -66,3 +66,28 @@ convergedStorage:
   version: 4.17
 ```
 
+### Local Storage
+If not using converged storage, local storage can be provided by using local disks.
+
+Define the following to setup this storage option:
+
+```yaml
+localStorage:
+  nodes:
+    # Create for each node that should have local storage
+    - name: node0
+      deviceSelector:
+        paths:
+          - /dev/sdb
+      forceWipeDrives: true
+    - name: node1
+      deviceSelector:
+        paths:
+          - /dev/sdb
+      forceWipeDrives: true
+    - name: node2
+      deviceSelector:
+        paths:
+          - /dev/sdb
+      forceWipeDrives: true
+```
