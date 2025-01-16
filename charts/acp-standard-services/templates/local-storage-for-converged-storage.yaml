@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
     targetRevision: {{ .Values.gitBranch | default "main" }}
-    path: chart/local-storage-for-converged-storage
+    path: charts/local-storage-for-converged-storage
     helm:
       values: |
 {{ if .Values.localStorage }}
