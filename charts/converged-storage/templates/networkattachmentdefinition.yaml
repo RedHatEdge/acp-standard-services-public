@@ -6,7 +6,7 @@ metadata:
   name: ocs-cluster-traffic
   namespace: openshift-storage
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   config: '{
   	"cniVersion": "0.3.1",

@@ -6,13 +6,12 @@ metadata:
   name: {{ .name | default "ocs-storagecluster" }}
   namespace: openshift-storage
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "2"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   failureDomain: host
   failureDomainKey: kubernetes.io/hostname
   monDataDirHostPath: /var/lib/rook
-  resourceProfile: {{ .resourceProfile | default "balanced" }}
   storageDeviceSets:
     - config: {}
       count: {{ .totalNumDisks }}
@@ -23,7 +22,7 @@ spec:
           resources:
             requests:
               storage: '1'
-{{- with $.Values.localStorage }}
+{{- with $.Values.localStorageForConvergedStorage }}
           storageClassName: {{ .storageClassName }}
           volumeMode: {{ .volumeMode }}
       name: ocs-deviceset-{{ .storageClassName }}
