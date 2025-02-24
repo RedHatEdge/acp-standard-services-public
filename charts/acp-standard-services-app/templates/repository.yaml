@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: acp-standard-services-github-access
+  namespace: openshift-gitops
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  type: git
+  url: https://github.com/RedHatEdge/acp-standard-services-public.git
+  password: {{ .Values.githubPAT }}
