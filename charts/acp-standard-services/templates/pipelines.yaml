@@ -1,0 +1,26 @@
+{{- with .Values.pipelines }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pipelines
+  namespace: openshift-gitops
+  labels:
+    application: pipelines
+spec:
+  destination:
+    name: ''
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+  source:
+    repoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
+    targetRevision: {{ $.Values.gitBranch | default "main" }}
+    path: charts/pipelines
+    helm:
+      values: |
+        pipelines:
+{{- toYaml . | nindent 10 }}
+{{- end }}
