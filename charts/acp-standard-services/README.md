@@ -18,3 +18,5 @@ The templates within this chart will automatically pass values along to the rend
 | Service Name | Description | Repository Path | Required Values |
 | --- | --- | --- | --- |
 | Certificate Management | Manages the issuing of certificates for core platform functions and other applications | `charts/certificate-management` | [Link](../certificate-management/README.md#required-values) |
+| Network Interface Management | Manages physical and logical interfaces on ACP nodes | `charts/network-interface-management` | [Link](../network-interface-management/README.md#required-values) |
+| Local Storage for Converged Storage | Identifies and presents local disks for consumption by the converged storage service | `charts/local-storage-for-converged-storage` | [Link](../local-storage-for-converged-storage/README.md#required-values) |
