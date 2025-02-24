@@ -13,7 +13,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   syncPolicy:
-    automated: {}
+    automated:
+      selfHeal: true
   source:
     repoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
     targetRevision: {{ .Values.gitBranch | default "main" }}
