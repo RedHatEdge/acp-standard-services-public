@@ -1,0 +1,41 @@
+{{- with .Values.certificateManagement }}
+{{ if .issueAPICert }}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: openshift-api
+  namespace: openshift-config
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  dnsNames:
+    - api.{{ .clusterBaseDNSZone }}
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: {{.issuer.name }}
+  secretName: openshift-api-cert
+{{ end }}
+{{ if .issueIngressCert }}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: router-default
+  namespace: openshift-ingress
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  dnsNames:
+      - apps.{{ .clusterBaseDNSZone }}
+      - "*.apps.{{ .clusterBaseDNSZone }}"
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: {{ .issuer.name }}
+  secretName: router-cert
+{{ end }}
+{{- end }}
