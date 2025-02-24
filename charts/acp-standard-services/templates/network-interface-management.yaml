@@ -1,12 +1,12 @@
-{{- with .Values.nodeInterfaceConfiguration }}
+{{- with .Values.networkInterfaceManagement }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: certificate-management
+  name: network-interface-management
   namespace: openshift-gitops
   labels:
-    application: certificate-management
+    application: network-interface-management
 spec:
   destination:
     name: ''
@@ -18,9 +18,9 @@ spec:
   source:
     repoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
     targetRevision: {{ .Values.gitBranch | default "main" }}
-    path: charts/certificate-management
+    path: charts/network-interface-management
     helm:
       values: |
-        nodeInterfaceConfiguration:
+        networkInterfaceManagement:
 {{- toYaml . | nindent 10 }}
 {{- end }}
