@@ -22,3 +22,4 @@ The templates within this chart will automatically pass values along to the rend
 | Local Storage for Converged Storage | Identifies and presents local disks for consumption by the converged storage service | `charts/local-storage-for-converged-storage` | [Link](../local-storage-for-converged-storage/README.md#required-values) |
 | Converged Storage | Provides converged storage using local storage attached to ACP nodes | `charts/converged-storage` | [Link](../converged-storage/README.md#required-values) |
 | Virtualization | Provides functionality around creating, importing, and running virtual machines on the ACP | `charts/virtualization` | [Link](../virtualization/README.md#required-values) |
+| IT Automation | Provides procedural automation functionality for targets on and outside of an ACP | `charts/it-automation` | [Link](../it-automation/README.md#required-values)
