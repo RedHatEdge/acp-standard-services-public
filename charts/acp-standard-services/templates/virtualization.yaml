@@ -1,0 +1,26 @@
+{{- with .Values.virtualization }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: virtualization
+  namespace: openshift-gitops
+  labels:
+    application: virtualization
+spec:
+  destination:
+    name: ''
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+  source:
+    repoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
+    targetRevision: {{ .Values.gitBranch | default "main" }}
+    path: charts/virtualization
+    helm:
+      values: |
+        virtualization:
+{{- toYaml . | nindent 10 }}
+{{- end }}
