@@ -1,0 +1,14 @@
+{{- with .Values.itAutomation.automationController }}
+---
+apiVersion: automationcontroller.ansible.com/v1beta1
+kind: AutomationController
+metadata:
+  name: {{ .name | default "controller" }}
+  namespace: ansible-automation-platform
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  replicas: {{ .replicas }}
+  postgres_storage_class: {{ .storageClass }}
+{{- end }}

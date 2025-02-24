@@ -1,0 +1,14 @@
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: ansible-automation-platform
+  namespace: ansible-automation-platform
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  channel: 'stable-{{ .Values.itAutomation.version }}'
+  installPlanApproval: Automatic
+  name: ansible-automation-platform-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
