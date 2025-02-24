@@ -5,10 +5,12 @@ metadata:
   name: kubevirt-hyperconverged
   namespace: openshift-cnv
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   featureGates:
-    enableCommonBootImageImport: {{ .Values.virtualization.commonBootImageImport | default true }}
-    nonRoot: {{ .Values.virtualization.nonRoot | default true }}
-    withHostPassthroughCPU: {{ .Values.virtualization.hostCPUPassThrough | default true }}
+{{- with .Values.virtualization }}
+    enableCommonBootImageImport: '{{ .commonBootImageImport | default true }}'
+    nonRoot: '{{ .nonRoot | default true }}'
+    withHostPassthroughCPU: '{{ .hostCPUPassThrough | default true }}'
+{{- end }}
