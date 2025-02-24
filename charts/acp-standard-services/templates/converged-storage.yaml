@@ -1,0 +1,28 @@
+{{- with .Values.convergedStorage }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: converged-storage
+  namespace: openshift-gitops
+  labels:
+    application: converged-storage
+spec:
+  destination:
+    name: ''
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+  source:
+    repoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
+    targetRevision: {{ .Values.gitBranch | default "main" }}
+    path: charts/converged-storage
+    helm:
+      values: |
+        localStorageForConvergedStorage:
+{{- toYaml $.Values.localStorageForConvergedStorage | nindent 10 }}
+        convergedStorage:
+{{- toYaml . | nindent 10 }}
+{{- end }}
