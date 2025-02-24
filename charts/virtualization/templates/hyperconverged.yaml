@@ -10,7 +10,7 @@ metadata:
 spec:
   featureGates:
 {{- with .Values.virtualization }}
-    enableCommonBootImageImport: '{{ .commonBootImageImport | default true }}'
-    nonRoot: '{{ .nonRoot | default true }}'
-    withHostPassthroughCPU: '{{ .hostCPUPassThrough | default true }}'
+    enableCommonBootImageImport: {{ .commonBootImageImport | default true }}
+    nonRoot: {{ .nonRoot | default true }}
+    withHostPassthroughCPU: {{ .hostCPUPassThrough | default true }}
 {{- end }}
