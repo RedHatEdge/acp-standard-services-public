@@ -1,0 +1,25 @@
+{{- with .Values.certificateManagement }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: certificate-management
+  namespace: openshift-gitops
+  labels:
+    application: certificate-management
+spec:
+  destination:
+    name: ''
+    server: https://kubernetes.default.svc
+  project: default
+  syncPolicy:
+    automated: {}
+  source:
+    repoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
+    targetRevision: {{ .Values.gitBranch | default "main" }}
+    path: charts/certificate-management
+    helm:
+      values: |
+        certificateManagement:
+{{- toYaml . | nindent 10 }}
+{{- end }}
