@@ -5,10 +5,12 @@ metadata:
   name: local-disks
   namespace: openshift-local-storage
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "2"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
-  storageClassName: {{ .Values.localStorageForConvergedStorage.storageClassName }}
-  volumeMode: {{ .Values.localStorageForConvergedStorage.volumeMode }}
+{{- with .Values.localStorageForConvergedStorage }}
+  storageClassName: {{ .storageClassName }}
+  volumeMode: {{ .volumeMode }}
   deviceInclusionSpec:
-{{- toYaml .Values.localStorageForConvergedStorage.deviceInclusionSpec | nindent 4 }}
+{{- toYaml .deviceInclusionSpec | nindent 4 }}
+{{- end }}

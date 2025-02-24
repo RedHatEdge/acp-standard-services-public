@@ -5,7 +5,7 @@ metadata:
   name: local-operator-group
   namespace: openshift-local-storage
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   targetNamespaces:
   - openshift-local-storage
