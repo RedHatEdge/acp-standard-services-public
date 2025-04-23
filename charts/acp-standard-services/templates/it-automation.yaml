@@ -9,8 +9,12 @@ metadata:
     application: it-automation
 spec:
   destination:
+    {{- if $.Values.destination }}
+    name: {{ $.Values.destination }}
+    {{- else }}
     name: ''
     server: https://kubernetes.default.svc
+    {{- end }}
   project: default
   syncPolicy:
     automated:
