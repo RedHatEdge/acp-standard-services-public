@@ -3,7 +3,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: pipelines
+  name: {{ $.Values.namePrefix | default "" }}pipelines
   namespace: openshift-gitops
   labels:
     application: pipelines

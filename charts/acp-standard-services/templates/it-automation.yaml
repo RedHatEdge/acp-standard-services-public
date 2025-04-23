@@ -3,7 +3,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: it-automation
+  name: {{ $.Values.namePrefix | default "" }}it-automation
   namespace: openshift-gitops
   labels:
     application: it-automation

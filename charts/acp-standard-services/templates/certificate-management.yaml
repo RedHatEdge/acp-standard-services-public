@@ -3,7 +3,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: certificate-management
+  name: {{ $.Values.namePrefix | default "" }}certificate-management
   namespace: openshift-gitops
   labels:
     application: certificate-management

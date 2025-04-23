@@ -3,7 +3,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: local-storage-for-converged-storage
+  name: {{ $.Values.namePrefix | default "" }}local-storage-for-converged-storage
   namespace: openshift-gitops
   labels:
     application: local-storage-for-converged-storage
