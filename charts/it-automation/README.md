@@ -13,6 +13,23 @@ itAutomation:
   automationController:
     storageClass: ocs-storagecluster-ceph-rbd
     replicas: 1
+  automationHub:
+    storageType: file
+    fileStorage:
+      size: 100Gi
+      storageClass: ocs-storagecluster-cephfs
+      accessMode: ReadWriteMany
+    postgres:
+      storage:
+        request: 8Gi
+        limit: 50Gi
+      resources:
+        limits:
+          cpu: 1000m
+          memory: 8Gi
+        requests:
+          cpu: 500m
+          memory: 2Gi
 ```
 
 ## Service Deployment
