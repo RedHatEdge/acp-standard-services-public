@@ -1,0 +1,38 @@
+
+{{- with .Values.itAutomation.automationHub }}
+---
+apiVersion: automationhub.ansible.com/v1beta1
+kind: AutomationHub
+metadata:
+  name: {{ .name | default "hub" }}
+  namespace: ansible-automation-platform
+spec:
+  storage_type: {{ .storageType }}
+{{- with .fileStorage }}
+  file_storage_size: {{ .size }}
+  file_storage_storage_class: {{ .storageClass }}
+  file_storage_access_mode: {{ .accessMode }}
+{{- end }}
+{{- with .postgres }}
+{{- with .storage }}
+  postgres_storage_requirements:
+    limits:
+      storage: {{ .limit }}
+    requests:
+      storage: {{ .request }}
+{{- end }}
+{{- with .resources }}
+  postgres_resource_requirements:
+{{- with .limits }}
+    limits:
+      cpu: {{ .cpu }}
+      memory: {{ .memory }}
+{{- end }}
+{{- with .requests }}
+    requests:
+      cpu: {{ .cpu }}
+      memory: {{ .memory }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
