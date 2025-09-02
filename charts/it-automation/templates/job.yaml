@@ -1,0 +1,51 @@
+{{- with .Values.itAutomation.controllerSetup }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: setup-controller
+  namespace: 
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+spec:
+  backoffLimit: 20
+  template:
+    spec:
+      containers:
+        - name: configure-controller
+          image: quay.io/jswanson/configure-aap:2.5
+          volumeMounts:
+            - name: inventory
+              mountPath: /runner/inventory
+            - name: variables
+              mountPath: /runner/variables
+            - name: ansible-tmp
+              mountPath: /.ansible/tmp
+            - name: ansible-async
+              mountPath: /.ansible_async
+          command: ["/usr/local/bin/ansible-playbook"]
+          args:
+            - playbooks/configure-controller.yml
+            - --inventory=inventory
+            - -vv
+          env:
+            - name: AAP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: aap-admin-password
+                  key: password
+      restartPolicy: OnFailure
+      volumes:
+        - name: inventory
+          configMap:
+            name: setup-controller-inventory
+        - name: variables
+          configMap:
+            name: setup-controller-variables
+        - name: ansible-tmp
+          emptyDir:
+            sizeLimit: 100Mi
+        - name: ansible-async
+          emptyDir:
+            sizeLimit: 100Mi
+{{- end }}

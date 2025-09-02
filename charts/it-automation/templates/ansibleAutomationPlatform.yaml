@@ -1,0 +1,32 @@
+{{- with .Values.itAutomation.ansibleAutomationPlatform }}
+---
+apiVersion: aap.ansible.com/v1alpha1
+kind: AnsibleAutomationPlatform
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: '1'
+  name: aap
+spec:
+  eda:
+    disabled: false
+  route_tls_termination_mechanism: Edge
+  redis_mode: standalone
+  image_pull_policy: IfNotPresent
+  lightspeed:
+    disabled: {{ ((.lightspeed).disabled) | default "true" }}
+  hub:
+    disabled: false
+    {{- with .hub }}
+    file_storage_size: {{ .storageSize }}
+    file_storage_storage_class: {{ .storageClass }}
+    redis_storage_class: {{ .storageClass }}
+    storage_type: {{ .storageType }}
+    {{- end }}
+  database:
+    {{- with .database }}
+    postgres_storage_class: {{ .storageClass }}
+    {{- end }}
+  controller:
+    disabled: false
+{{- end }}

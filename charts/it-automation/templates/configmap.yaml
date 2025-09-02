@@ -1,0 +1,28 @@
+{{- with .Values.itAutomation.controllerSetup }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setup-controller-inventory
+data:
+  inventory.yml: |
+    ---
+    all:
+      children:
+        aap:
+          hosts:
+            aap.{{ $.Release.Namespace }}.svc.cluster.local:
+              aap_hostname: http://aap.{{ $.Release.Namespace }}.svc.cluster.local
+              aap_username: admin
+              aap_validate_certs: 'false'
+              ansible_connection: local
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setup-controller-variables
+data:
+  controller.yml: |
+    ---
+  {{ . | nindent 4 }}
+{{- end }}
