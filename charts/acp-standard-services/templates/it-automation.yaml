@@ -15,6 +15,7 @@ spec:
     name: ''
     server: https://kubernetes.default.svc
     {{- end }}
+    namespace: {{ ((.Values).itAutomation).targetNamespace | default "ansible-automation-platform" }}
   project: default
   syncPolicy:
     automated:
