@@ -7,12 +7,31 @@ This chart requires a few inputs to configure the service, see below for more in
 ```yaml
 # Define this to trigger installation of the service
 itAutomation:
-  # Version 2.4 for now, 2.5 not ready for primetime.
-  version: 2.4
-  # Vars specific to controller
+  # If AAP2.5 is desired, specify ansibleAutomationPlatform
+  ansibleAutomationPlatform:
+    database:
+      storageClass: ocs-storagecluster-ceph-rbd
+    hub:
+      storageType: file
+      storageClass: ocs-storagecluster-cephfs
+      storageSize: 100Gi
+    lightspeed:
+      disabled: true
+
+  # If AAP2.4 is desired, specify automationController
   automationController:
     storageClass: ocs-storagecluster-ceph-rbd
     replicas: 1
+  
+  # This chart can optionally apply an initial controller configuration.
+  # Populate the corresponding vars according to: https://github.com/redhat-cop/infra.aap_configuration/tree/devel
+  # Only use if installing AAP2.5 for now
+  controllerSetup: |
+    manifest_url: http://your-manifest.example.com
+    aap_organizations:
+      - name: Your Organization
+        description: Custom created organization
+    
   automationHub:
     storageType: file
     fileStorage:
