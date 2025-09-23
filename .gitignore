@@ -2,3 +2,5 @@
 tmp
 values.yaml
 josh-values.yaml
+*testing.yaml
+testing/
