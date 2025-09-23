@@ -1,0 +1,13 @@
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-opentelemetry-operator
+  namespace: openshift-opentelemetry-operator
+  annotations:
+    olm.providedAPIs: Instrumentation.v1alpha1.opentelemetry.io,OpAMPBridge.v1alpha1.opentelemetry.io,OpenTelemetryCollector.v1alpha1.opentelemetry.io,OpenTelemetryCollector.v1beta1.opentelemetry.io,TargetAllocator.v1alpha1.opentelemetry.io
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  {{- with .Values.telemetry }}
+  upgradeStrategy: {{ .upgradeStrategy | default('Default') }}
+  {{- end }}
