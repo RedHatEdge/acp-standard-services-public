@@ -7,7 +7,9 @@ This chart requires a few inputs to configure the service, see below for more in
 ```yaml
 # Define this to trigger installation of the service
 itAutomation:
-  # If AAP2.5 is desired, specify ansibleAutomationPlatform
+  # If AAP2.5+ is desired, specify ansibleAutomationPlatform
+  # Defaults to stable-2.5, can be overriden with:
+  # overrideAnsibleAutomationPlatformVersion: "stable-2.6"
   ansibleAutomationPlatform:
     database:
       storageClass: ocs-storagecluster-ceph-rbd
