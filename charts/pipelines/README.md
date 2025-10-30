@@ -1,4 +1,4 @@
-# Pipelines Service
+# Telemetry Service
 This chart deploys the pipelines service, which is used run complex workflows on an ACP or on a hub cluster. This can be used for application builds, testing, virtual machine template creation, and more.
 
 ## Required Values
