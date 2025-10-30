@@ -12,7 +12,7 @@ spec:
   channel: 'stable-2.4'
   {{- end }}
   {{- if .ansibleAutomationPlatform }}
-  channel: 'stable-2.5'
+  channel: '{{ .overrideAnsibleAutomationPlatformVersion | default "stable-2.5" }}'
   {{- end }}
   installPlanApproval: Automatic
   name: ansible-automation-platform-operator
