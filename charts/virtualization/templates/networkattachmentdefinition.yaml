@@ -1,4 +1,4 @@
-{{- if Values.virtualization.vlanNetworkAttachmentDefinitions }}
+{{- if .Values.virtualization.vlanNetworkAttachmentDefinitions }}
 {{- range .Values.virtualization.vlanNetworkAttachmentDefinitions }}
 ---
 apiVersion: "k8s.cni.cncf.io/v1"
