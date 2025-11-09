@@ -16,7 +16,7 @@ spec:
   lightspeed:
     disabled: {{ ((.lightspeed).disabled) | default "true" }}
   hub:
-    disabled: false
+    disabled: true
     {{- with .hub }}
     file_storage_size: {{ .storageSize }}
     file_storage_storage_class: {{ .storageClass }}
