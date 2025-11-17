@@ -10,7 +10,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
 {{- .with .Values.telemetry }}
-  channel: {{ .channel | default 'latest' }}
+  channel: {{ .channel | default "latest" }}
   installPlanApproval: Automatic
   name: opentelemetry-product
   source: redhat-operators
