@@ -1,0 +1,30 @@
+{{- with .Values.observability }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $.Values.namePrefix | default "" }}observability
+  namespace: openshift-gitops
+  labels:
+    application: observability
+spec:
+  destination:
+    {{- if $.Values.destination }}
+    name: {{ $.Values.destination }}
+    {{- else }}
+    name: ''
+    server: https://kubernetes.default.svc
+    {{- end }}
+  project: default
+  syncPolicy:
+    automated:
+      selfHeal: true
+  source:
+    repoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
+    targetRevision: {{ $.Values.gitBranch | default "main" }}
+    path: charts/observability
+    helm:
+      values: |
+        observability:
+{{- toYaml . | nindent 10 }}
+{{- end }}
