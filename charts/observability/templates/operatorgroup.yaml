@@ -8,5 +8,5 @@ metadata:
     argocd.argoproj.io/sync-wave: "0"
 spec:
   {{- with .Values.observability }}
-  upgradeStrategy: {{ .upgradeStrategy | default('Default') }}
+  upgradeStrategy: {{ .upgradeStrategy | default "Default" }}
   {{- end }}
