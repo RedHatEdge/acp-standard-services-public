@@ -9,11 +9,11 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-{{- .with .Values.telemetry }}
-  channel: {{ .channel | default "latest" }}
+  {{- with .Values.telemetry }}
+  channel: {{ .channel | default "Stable" }}
+  {{- end }}
   installPlanApproval: Automatic
   name: opentelemetry-product
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: opentelemetry-operator.v0.127.0-2
-{{- end }}
+  startingCSV: opentelemetry-operator.v0.135.0-1
