@@ -10,7 +10,7 @@ If using a standalone ACP, such as a disconnected ACP or without a hub, bootstra
 
 To begin, bootstrap the declarative state management service:
 ```
-helm install declarative-state-management charts/declarative-statemanagement/
+helm install declarative-state-management charts/declarative-state-management/
 ```
 
 The installation should only take a few moments.
