@@ -10,5 +10,5 @@ spec:
   channel: "stable"
   installPlanApproval: Automatic
   name: local-storage-operator
-  source: redhat-operators
+  source: {{ $.Values.catalogSource | default "redhat-operators" }}
   sourceNamespace: openshift-marketplace

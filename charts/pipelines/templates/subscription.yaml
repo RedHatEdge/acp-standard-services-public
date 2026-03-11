@@ -11,5 +11,5 @@ spec:
   channel: {{ .Values.pipelines.version | default "latest" }}
   installPlanApproval: Automatic
   name: openshift-pipelines-operator-rh
-  source: redhat-operators
+  source: {{ $.Values.catalogSource | default "redhat-operators" }}
   sourceNamespace: openshift-marketplace

@@ -16,6 +16,6 @@ spec:
   {{- end }}
   installPlanApproval: Automatic
   name: ansible-automation-platform-operator
-  source: redhat-operators
+  source: {{ $.Values.catalogSource | default "redhat-operators" }}
   sourceNamespace: openshift-marketplace
 {{- end }}

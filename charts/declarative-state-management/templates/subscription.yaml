@@ -8,5 +8,5 @@ spec:
   channel: latest
   installPlanApproval: Automatic
   name: openshift-gitops-operator
-  source: redhat-operators
+  source:  {{ $.Values.catalogSource | default "redhat-operators" }}
   sourceNamespace: openshift-marketplace

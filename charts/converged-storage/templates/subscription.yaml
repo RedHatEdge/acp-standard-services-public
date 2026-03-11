@@ -10,5 +10,5 @@ spec:
   channel: "stable-{{ .Values.convergedStorage.version }}"
   installPlanApproval: Automatic
   name: odf-operator
-  source: redhat-operators
+  source:  {{ $.Values.catalogSource | default "redhat-operators" }}
   sourceNamespace: openshift-marketplace

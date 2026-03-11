@@ -7,7 +7,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
 spec:
-  source: redhat-operators
+  source: {{ $.Values.catalogSource | default "redhat-operators" }}
   sourceNamespace: openshift-marketplace
   name: kubevirt-hyperconverged
   channel: "stable"
