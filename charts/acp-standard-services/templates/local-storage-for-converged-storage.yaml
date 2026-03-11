@@ -26,7 +26,7 @@ spec:
     helm:
       values: |
 {{- if $.Values.catalogSource }}     
-        catalogSource:{{ $.Values.catalogSource | default "redhat-operators" }}
+        catalogSource: {{ $.Values.catalogSource | default "redhat-operators" }}
 {{- end }}
         localStorageForConvergedStorage:
 {{- toYaml . | nindent 10 }}
