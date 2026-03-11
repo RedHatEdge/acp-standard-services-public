@@ -13,5 +13,7 @@ spec:
     enableCommonBootImageImport: {{ .commonBootImageImport | default true }}
     nonRoot: {{ .nonRoot | default true }}
     withHostPassthroughCPU: {{ .hostCPUPassThrough | default true }}
+{{- if .sriovLiveMigration }}    
     sriovLiveMigration: {{ .sriovLiveMigration | default false }}
+{{- end }}
 {{- end }}
