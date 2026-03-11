@@ -21,7 +21,7 @@ spec:
     automated:
       selfHeal: true
   source:
-    repoURL: {{ $.Values.repoURL | default "https://github.com/RedHatEdge/acp-standard-services-public.git" }}
+    repoURL: {{ $.Values.gitRepoURL | default "https://github.com/RedHatEdge/acp-standard-services-public.git" }}
     targetRevision: {{ $.Values.gitBranch | default "main" }}
     path: charts/it-automation
     helm:

@@ -22,8 +22,8 @@ The deployment of these services is controlled by template variables, allowing f
 
 The global template variables that can be used to select the correct repo:
 ```yaml
-branch: main
-repoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
+gitBranch: main
+gitRepoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
 ```
 
 ## Services
