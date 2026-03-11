@@ -25,6 +25,9 @@ spec:
     path: charts/network-interface-management
     helm:
       values: |
+{{- if $.Values.catalogSource }}     
+        catalogSource:{{ $.Values.catalogSource | default "redhat-operators" }}
+{{- end }}
         networkInterfaceManagement:
 {{- toYaml . | nindent 10 }}
 {{- end }}

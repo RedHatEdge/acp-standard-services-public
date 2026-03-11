@@ -25,6 +25,9 @@ spec:
     path: charts/pipelines
     helm:
       values: |
+{{- if $.Values.catalogSource }}     
+        catalogSource:{{ $.Values.catalogSource | default "redhat-operators" }}
+{{- end }}
         pipelines:
 {{- toYaml . | nindent 10 }}
 {{- end }}

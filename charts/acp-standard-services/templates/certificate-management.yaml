@@ -25,6 +25,9 @@ spec:
     path: charts/certificate-management
     helm:
       values: |
+{{- if $.Values.catalogSource }}     
+        catalogSource:{{ $.Values.catalogSource | default "redhat-operators" }}
+{{- end }}
         certificateManagement:
 {{- toYaml . | nindent 10 }}
 {{- end }}

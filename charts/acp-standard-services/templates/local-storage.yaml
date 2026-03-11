@@ -25,6 +25,9 @@ spec:
     path: charts/local-storage
     helm:
       values: |
+{{- if $.Values.catalogSource }}     
+        catalogSource:{{ $.Values.catalogSource | default "redhat-operators" }}
+{{- end }}
         localStorage:
 {{- toYaml . | nindent 10 }}
 {{- end }}

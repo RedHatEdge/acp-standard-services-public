@@ -26,6 +26,9 @@ spec:
     path: charts/it-automation
     helm:
       values: |
+{{- if $.Values.catalogSource }}     
+        catalogSource:{{ $.Values.catalogSource | default "redhat-operators" }}
+{{- end }}
         itAutomation:
 {{- toYaml . | nindent 10 }}
 {{- end }}

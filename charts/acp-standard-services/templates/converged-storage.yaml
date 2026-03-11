@@ -25,6 +25,9 @@ spec:
     path: charts/converged-storage
     helm:
       values: |
+{{- if $.Values.catalogSource }}     
+        catalogSource:{{ $.Values.catalogSource | default "redhat-operators" }}
+{{- end }}
         localStorageForConvergedStorage:
 {{- toYaml $.Values.localStorageForConvergedStorage | nindent 10 }}
         convergedStorage:

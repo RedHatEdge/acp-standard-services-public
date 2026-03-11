@@ -25,6 +25,9 @@ spec:
     path: charts/observability
     helm:
       values: |
+{{- if $.Values.catalogSource }}     
+        catalogSource:{{ $.Values.catalogSource | default "redhat-operators" }}
+{{- end }}
         observability:
 {{- toYaml . | nindent 10 }}
 {{- end }}
