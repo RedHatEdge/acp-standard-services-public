@@ -20,7 +20,7 @@ spec:
     automated:
       selfHeal: true
   source:
-    repoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
+    repoURL: {{ $.Values.repoURL | default "https://github.com/RedHatEdge/acp-standard-services-public.git" }}
     targetRevision: {{ $.Values.gitBranch | default "main" }}
     path: charts/converged-storage
     helm:

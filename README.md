@@ -20,6 +20,12 @@ Within the charts directory, a parent chart named 'acp-standard-services' will c
 
 The deployment of these services is controlled by template variables, allowing for fine-tuning of what services should be deployed.
 
+The global template variables that can be used to select the correct repo:
+```yaml
+branch: main
+repoURL: https://github.com/RedHatEdge/acp-standard-services-public.git
+```
+
 ## Services
 Below are the services deployed by the parent `acp-standard-services` application.
 
@@ -42,6 +48,7 @@ localStorageForConvergedStorage:
       - disk
     deviceMechanicalProperties:
       - NonRotational
+
 ```
 
 ### Converged Storage
