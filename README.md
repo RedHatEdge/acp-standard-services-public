@@ -41,6 +41,8 @@ localStorageForConvergedStorage:
     - node2
   # Storage class to put the located storage into
   storageClassName: local-disks
+  # For Windows VMs that require immediate binding
+  addImmediateStorageClass: false
   volumeMode: Block
   # How to find storage devices
   deviceInclusionSpec:
@@ -88,6 +90,8 @@ localStorage:
       deviceSelectorPaths:
         - /dev/sda
       default: true
+       # when true, creates a second SC with immediate volumeBindMode for virt
+      createImmediate: false
     - name: node1-local-storage
       nodes:
         - node1

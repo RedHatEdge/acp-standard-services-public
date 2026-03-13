@@ -1,0 +1,18 @@
+{{- range .Values.localStorage.deviceClasses }}
+{{- if .createImmediate }}
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: lvms-{{ .name }}-immediate
+  annotations:
+    description: Provides RWO and RWOP Filesystem & Block volumes for Windows VMs
+provisioner: topolvm.io
+parameters:
+  csi.storage.k8s.io/fstype: {{ .fstype | default "xfs" }}
+  topolvm.io/device-class: {{ .name }}
+reclaimPolicy: Delete
+allowVolumeExpansion: true
+volumeBindingMode: Immediate
+{{- end }}
+{{- end }}
