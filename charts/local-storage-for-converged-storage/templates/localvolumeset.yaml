@@ -10,7 +10,7 @@ metadata:
 spec:
 {{- with .Values.localStorageForConvergedStorage }}
   storageClassName: {{ .storageClassName }}
-  forceWipeDevicesAndDestroyAllData: {{ .wipeDisks | default false }}
+ 
   volumeMode: {{ .volumeMode }}
   deviceInclusionSpec:
 {{- toYaml .deviceInclusionSpec | nindent 4 }}
