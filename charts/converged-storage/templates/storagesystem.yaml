@@ -1,3 +1,9 @@
+{{- $versionParts := .Values.convergedStorage.version | toString | splitList "." }}
+{{- $minorVersion := 0 }}
+{{- if gt (len $versionParts) 1 }}
+{{- $minorVersion = index $versionParts 1 | int }}
+{{- end }}
+{{- if lt $minorVersion 19 }}
 ---
 apiVersion: odf.openshift.io/v1alpha1
 kind: StorageSystem
@@ -10,3 +16,4 @@ metadata:
 spec:
   kind: storagecluster.ocs.openshift.io/v1
   name: ocs-storagecluster
+{{- end }}
